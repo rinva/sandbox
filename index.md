@@ -1,4 +1,5 @@
-# Frequently Asked Questions
+<h1 style="text-align: center;">Frequently Asked Questions</h1>
+
 
 
 \#129  
