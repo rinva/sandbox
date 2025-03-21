@@ -1,4 +1,7 @@
-<h1 style="text-align: center;">Frequently Asked Questions</h1>
+<div align="center">
+    <h1>Frequently Asked Questions</h1>
+</div>
+
 
 
 
