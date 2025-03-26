@@ -5,7 +5,7 @@
 
 
 
-\#129  
+
 **Q: Why do some input arrays contain only zeros in the CellMap Segmentation Challenge dataset?**
 
 **A:** Yes, this is expected. Many crops do not contain all organelles, resulting in input arrays filled with zeros or `False` values. This occurs because not every crop includes every organelle type.
@@ -16,22 +16,18 @@
 
 **A:** If you use the **included data loading utilities**, only regions with data should be loaded. Otherwise, you can use the [`training_crop_manifest`](https://github.com/user-attachments/files/18716486/train_crop_manifest.csv) to export cropped versions of the raw data that exclude empty regions.
 
-*Note: This behavior is normal and does not indicate an issue with your data or processing pipeline.*
 
 ---
 
 
-\#130  
+
 **Q: How can I access the ground truth data for the CellMap Segmentation Challenge?**
 
-**A:** The ground truth data for the CellMap Segmentation Challenge is available in the `training` folder within the dataset. Each organelle has a corresponding subfolder containing the ground truth labels. For example, for mitochondria, you can find the ground truth data in the `training/mitochondria` directory. Ensure you refer to the specific organelle's subfolder to access the correct ground truth labels.​
-
-*Note: Accurately locating and utilizing the ground truth data is crucial for effective model training and evaluation in the challenge.*
+**A:** Once downloaded, the ground truth data for the CellMap Segmentation Challenge will be available in the `data` folder within the repository. Each dataset has a corresponding subfolder, with groundtruth subfolders for each crop, each with a subfolder containing the ground truth labels for a single organelle. For example, for mitochondria in crop #124 from `jrc_mus-liver`, you can find the ground truth data in the `data/jrc_mus-liver/jrc_mus-liver.zarr/recon-1/labels/groundtruth/crop124/mito` directory. 
 
 ---
 
 
-\#108  
 **Q: Is there a limit to the number of submissions I can make per day in the CellMap Segmentation Challenge?**
 
 **A:** Currently, there is no daily submission limit for participants. However, the organizers may implement a daily or lifetime limit if the overall submission volume becomes too high or if there is suspicion of misuse of the scoring system to enhance entries.
@@ -48,27 +44,9 @@
 ---
 
 
-\#105
-
 **Q: How can I define training hyperparameters in the CellMap Segmentation Challenge?**
 
-**A:** The training pipeline accepts a `config_path` argument that points to a Python configuration file. This file allows you to set various hyperparameters and configurations for model training. Key parameters include:​
-
-* **`model_save_path`**: Specifies where to save model checkpoints. Default is `checkpoints/{model_name}_{epoch}.pth`.​
-
-* **`logs_save_path`**: Determines where to save logs for TensorBoard. Default is `tensorboard/{model_name}`. You can monitor training progress by running `tensorboard --logdir <logs_save_path>` in the terminal.​
-
-* **`datasplit_path`**: Indicates the path to the datasplit file that defines the train/validation split for the dataloader. Default is `datasplit.csv`.​
-
-* **`validation_prob`**: Sets the proportion of the dataset to use for validation, used if the specified datasplit CSV does not already exist. Default is `0.15`.​
-
-* **`learning_rate`**: Defines the learning rate for the optimizer. Default is `0.0001`.​
-
-* **`batch_size`**: Sets the batch size for the dataloader. Default is `8`.​
-
-* **`input_array_info`**: A dictionary containing the shape and scale of the input data. Default is `{'shape': (1, 128, 128, 128), 'scale': (1.0, 1.0, 1.0)}`.​
-
-By customizing these parameters in your configuration file, you can tailor the training process to your specific requirements.
+**A:** The training pipeline accepts a `config_path` argument that points to a Python configuration file. This file allows you to set various hyperparameters and configurations for model training. The exhaustive list of configurable parameters can be found [here in the examples README](https://github.com/janelia-cellmap/cellmap-segmentation-challenge/blob/main/examples/README.md#extended-training-configuration).  By customizing these parameters in your configuration file, you can tailor the training process to your specific requirements.  We encourage discussion of training strategies in the [repository's Discussion section](https://github.com/janelia-cellmap/cellmap-segmentation-challenge/discussions)!
 
 ---
 
