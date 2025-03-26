@@ -8,7 +8,7 @@
 
 **Q: Why do some input arrays contain only zeros in the CellMap Segmentation Challenge dataset?**
 
-**A:** Yes, this is expected. Many crops do not contain all organelles, resulting in input arrays filled with zeros or `False` values. This occurs because not every crop includes every organelle type.
+**A:** This is expected. Many crops do not contain all organelles, resulting in input arrays filled with zeros or `False` values. This occurs because not every crop includes every organelle type.
 
 ---
 
@@ -51,7 +51,6 @@
 ---
 
 
-\#100  
 **Q: Why do different data chunks (e.g., `jrc_mus-kidney-3`, `jrc_mus-liver-zon-1`) have varying numbers of categories in their `groundtruth` folders?**
 
 **A:** Each dataset focuses on specific organelles or structures, so the number of categories in the `groundtruth` folders can vary accordingly.​
@@ -72,14 +71,14 @@
 
 **Q: I encountered some crops, like `jrc_hela-3/crop60`, where the groundtruth is all zeros, and the original image appears as random noise. Is this expected?**
 
-**A:** Yes, this is expected. Some crops may not contain any annotated structures, resulting in groundtruth files filled with zeros. Additionally, certain regions might appear as noise due to the imaging process or the specific area captured.​
+**A:** Yes, this is expected. Some crops may not contain any annotated structures, resulting in groundtruth files filled with zeros. Additionally, certain regions might appear as noise due to the imaging process or the specific area captured.​  For instance, crops that specifically label portions of empty resin (non-sample) can be useful in training.
+
 
 *Note: For more detailed information, you can refer to the [discussion thread](https://github.com/janelia-cellmap/cellmap-segmentation-challenge/discussions/100) on this topic.*
 
 ---
 
 
-\#101
 
 **Q: Why do the ground truth annotations in certain crops contain category IDs that differ from the required prediction categories?**
 
@@ -102,7 +101,7 @@
 ---
 
 
-\#94  
+
 **Q: Where can I find the `train_crop_manifest.csv` file in the CellMap Segmentation Challenge dataset?**
 
 **A:** The `train_crop_manifest.csv` file, which provides details about the labeled training crops and their corresponding raw FIB-SEM images, is now available. You can access it directly from the challenge repository:​
@@ -116,7 +115,7 @@ This manifest includes essential information such as `voxel_size`, `translation`
 ---
 
 
-\#93  
+
 **Q: Is the highest resolution level (s0) consistently 2nm across all datasets in the CellMap Segmentation Challenge?**
 
 **A:** No, the highest resolution level (s0) varies between datasets for electron microscopy (EM) and between crops for ground truth.
@@ -126,7 +125,7 @@ This manifest includes essential information such as `voxel_size`, `translation`
 ---
 
 
-\#128
+
 
 **Q: Is it normal to encounter missing chunks in the datasets after downloading them using the default `csc fetch-data` command?**
 
@@ -155,7 +154,7 @@ Be cautious when increasing the padding size, as it may result in downloading th
 ---
 
 
-\#82
+
 
 **Q: What should I do if I encounter a "bad\_malloc" error while running `train_2D.py`?**
 
@@ -174,7 +173,7 @@ Be cautious when increasing the padding size, as it may result in downloading th
 ---
 
 
-\#112
+
 
 **Q: Why do I receive an "AssertionError: No valid training datasets found" when setting `classes = ["ribo"]` in the training script?**
 
@@ -185,7 +184,7 @@ Be cautious when increasing the padding size, as it may result in downloading th
 ---
 
 
-\#113
+
 
 **Q: Why are classes 56-58 missing from the annotation classes in the CellMap Segmentation Challenge?**
 
@@ -202,7 +201,7 @@ These classes are excluded because they are not part of the challenge's focus.
 ---
 
 
-Email
+
 
 **Q: Do different organelle labels have different resolutions?**
 
