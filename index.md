@@ -251,3 +251,87 @@ ensures that the generated `datasplit.csv` only includes FIB-SEM and ground trut
 <!-- trigger rebuild -->
 
 
+
+
+---
+layout: default
+title: CellMap Segmentation Challenge FAQ
+---
+
+# Frequently Asked Questions
+
+## 📦 Data Access & Structure
+
+### How can I access the ground truth data for the CellMap Segmentation Challenge?
+...
+
+### Where can I find the `train_crop_manifest.csv` file in the CellMap Segmentation Challenge dataset?
+...
+
+### Where can I find information about the annotated blocks for each dataset?
+...
+
+### Is it normal to encounter missing chunks in the datasets after downloading them using the default `csc fetch-data` command?
+...
+
+### How can I download additional raw data beyond the annotated regions?
+...
+
+## 🏷️ Annotation & Category Mapping
+
+### Why do the ground truth annotations in certain crops contain category IDs that differ from the required prediction categories?
+...
+
+### What does the category ID '0' represent in the ground truth annotations?
+...
+
+### If I encounter class '2' in the ground truth, should
+
+
+---
+layout: default
+title: CellMap Segmentation Challenge FAQ
+---
+
+# Frequently Asked Questions
+
+## 📦 Data Access & Structure
+
+### How can I access the ground truth data for the CellMap Segmentation Challenge?
+Once downloaded, the ground truth data for the CellMap Segmentation Challenge will be available in the `data` folder within the repository. Each dataset has a corresponding subfolder, with `groundtruth` subfolders for each crop, each with a subfolder containing the ground truth labels for a single organelle. For example, for mitochondria in crop #124 from jrc_mus-liver, you can find the ground truth data in the `data/jrc_mus-liver/jrc_mus-liver.zarr/recon-1/labels/groundtruth/crop124/mito` directory.
+
+### Where can I find the `train_crop_manifest.csv` file in the CellMap Segmentation Challenge dataset?
+The `train_crop_manifest.csv` file, which provides details about the labeled training crops and their corresponding raw FIB-SEM images, is now available. You can access it directly from the [challenge repository](https://github.com/cellmap-org/cellmap-sam).
+
+> **Download Link:** [train_crop_manifest.csv](https://github.com/cellmap-org/cellmap-sam/blob/main/docs/train_crop_manifest.csv)
+
+This manifest includes essential information such as `voxel_size`, `translation`, and `shape` for each labeled crop, aiding in accurate data alignment and analysis.
+
+> **Note:** For further details and updates, refer to the [discussion thread](https://github.com/cellmap-org/cellmap-sam/discussions/160) in the challenge repository.
+
+### Where can I find information about the annotated blocks for each dataset?
+You can refer to [the annotated blocks documentation](https://github.com/cellmap-org/cellmap-sam/blob/main/docs/annotated_blocks.md) for details on the specific regions that have been annotated in each dataset.
+
+### Is it normal to encounter missing chunks in the datasets after downloading them using the default `csc fetch-data` command?
+Yes, this is expected behavior. By default, the `csc fetch-data` command downloads only the raw data blocks that have corresponding ground truth annotations. This approach optimizes storage by fetching only the annotated regions. Consequently, when viewing datasets like `jrc_cos7-1a` at the `s2` level in Fiji, you might notice missing chunks or gaps in areas without annotations.
+
+### How can I download additional raw data beyond the annotated regions?
+To fetch more raw data surrounding the annotated blocks, you can use the `--raw-padding` parameter with the `csc fetch-data` command. For example, to add a padding of 128 voxels:
+
+```bash
+csc fetch-data --raw-padding 128
+```
+
+Be cautious when increasing the padding size, as it may result in downloading the entire raw dataset, which could require substantial storage space.
+
+...
+
+## 🧰 Data Preparation
+
+### Is there a way to crop only the image regions with ground truth labels and ignore the zero-only regions?
+If you use the included data loading utilities, only regions with data should be loaded. Otherwise, you can use the `training_crop_manifest` to export cropped versions of the raw data that exclude empty regions.
+
+### Is the downloaded data intended for semantic segmentation, and how can I obtain labels for instance segmentation?
+The provided groundtruth data is primarily for semantic segmentation. To derive instance segmentation labels, you can apply connected component labeling or watershed algorithms to the semantic segmentation masks.
+
+
