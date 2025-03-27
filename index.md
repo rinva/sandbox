@@ -84,8 +84,10 @@ In the ground truth annotations, the category ID `0` represents the background o
 
 <br><br>
 
-### If I encounter class '2' in the ground truth, should I map it to '60' or keep it as '2'?
+### If I encounter class '2' in the ground truth `all` array, should I map it to '60' or keep it as '2'?
 Participants should refer to the challenge's [category mapping guidelines](https://janelia-cellmap.github.io/cellmap-segmentation-challenge/annotation_classes.html#detailed-class-descriptions) to determine the correct mapping for each class. It's essential to follow the provided mappings to ensure consistency in predictions.
+
+The `all` array includes ids at the most granular level, i.e. it will only include ids of group classes (`60`/`cell`) when the atomic classes that comprise it were not annotated. However, all annotated group and atomic classes are provided as individual arrays (in this case `2` as `pm` and `60` as `cell`). Participants can avoid resolving the group class association by using those arrays directly.
 
 > **Note:** For detailed discussions and clarifications on annotation ID issues, please refer to [this discussion thread](https://github.com/janelia-cellmap/cellmap-segmentation-challenge/discussions/101).
 
