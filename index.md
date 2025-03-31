@@ -34,7 +34,10 @@
 
 
 ### How can I access the ground truth data for the CellMap Segmentation Challenge?
-Once downloaded, the ground truth data for the CellMap Segmentation Challenge will be available in the `data` folder within the repository. Each dataset has a corresponding subfolder, with `groundtruth` subfolders for each crop, each with a subfolder containing the ground truth labels for a single organelle. For example, for mitochondria in crop #124 from jrc_mus-liver, you can find the ground truth data in the `data/jrc_mus-liver/jrc_mus-liver.zarr/recon-1/labels/groundtruth/crop124/mito` directory.
+
+The training data for the CellMap Segmentation Challenge is hosted on the [CellMap s3 bucket](https://open.quiltdata.com/b/janelia-cosem-datasets) alongside other datasets. To download the challenge data we provide a command-line interface as part of this repo. Instructions for downloading can be found [in the README](https://github.com/janelia-cellmap/cellmap-segmentation-challenge?tab=readme-ov-file#download-the-data).
+
+Once downloaded, the ground truth data for the CellMap Segmentation Challenge will be available in the `data` folder within the repository (unless configured otherwise). Each dataset has a corresponding subfolder that contains a [zarr store](https://zarr-specs.readthedocs.io/en/latest/v2/v2.0.html) with all associated arrays. The `groundtruth` [group](https://zarr-specs.readthedocs.io/en/latest/v2/v2.0.html#groups) for each crop contains [multiscale groups](https://ngff.openmicroscopy.org/latest/#multiscale-md) with the annotations for each single organelle. For example, for mitochondria in crop #124 from jrc_mus-liver, you can find the ground truth data in `data/jrc_mus-liver/jrc_mus-liver.zarr/recon-1/labels/groundtruth/crop124/mito`.
 
 <br><br>
 
@@ -81,8 +84,10 @@ In the ground truth annotations, the category ID `0` represents the background o
 
 <br><br>
 
-### If I encounter class '2' in the ground truth, should I map it to '60' or keep it as '2'?
+### If I encounter class '2' in the ground truth `all` array, should I map it to '60' or keep it as '2'?
 Participants should refer to the challenge's [category mapping guidelines](https://janelia-cellmap.github.io/cellmap-segmentation-challenge/annotation_classes.html#detailed-class-descriptions) to determine the correct mapping for each class. It's essential to follow the provided mappings to ensure consistency in predictions.
+
+The `all` array includes ids at the most granular level, i.e. it will only include ids of group classes (`60`/`cell`) when the atomic classes that comprise it were not annotated. However, all annotated group and atomic classes are provided as individual arrays (in this case `2` as `pm` and `60` as `cell`). Participants can avoid resolving the group class association by using those arrays directly.
 
 > **Note:** For detailed discussions and clarifications on annotation ID issues, please refer to [this discussion thread](https://github.com/janelia-cellmap/cellmap-segmentation-challenge/discussions/101).
 
